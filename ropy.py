@@ -316,6 +316,12 @@ class RoPy:
 		except:
 			return False
 
+	def GetUnreadMessages(self):
+		try:
+			return json.loads(self.NetworkRequest('http://api.roblox.com/incoming-items/counts', None, True))['unreadMessageCount']
+		except:
+			return False
+
 	def SendFriendRequest(self, intID):
 		try:
 			return True if 'true' in self.NetworkRequest('http://www.roblox.com/friends/sendfriendrequest', {'targetUserId': `intID`}, True, self.GetToken('CSRF')) else False
